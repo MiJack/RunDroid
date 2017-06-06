@@ -1,0 +1,33 @@
+android.app.Activity onCreate android.os.Bundle
+android.app.Activity onStart
+android.app.Activity onResume
+android.app.Activity onPause
+android.app.Activity onStop
+android.app.Activity onDestroy
+android.app.Activity runOnUiThread java.lang.Runnable
+android.app.Service onCreate
+android.app.Service onDestroy
+android.app.Service onRebind android.content.Intent
+[static] android.os.Message obtain
+android.os.Message recycle
+# [static] android.os.Parcel obtain
+# [static] android.os.Parcel obtain int
+# [static] android.os.Parcel obtain long
+# android.os.Parcel recycle
+android.os.Handler enqueueMessage android.os.MessageQueue android.os.Message long
+# android.os.Handler sendMessage android.os.Message
+# android.os.Handler sendEmptyMessage int
+# android.os.Handler sendEmptyMessageDelayed int long
+# android.os.Handler sendEmptyMessageAtTime int long
+# android.os.Handler sendMessageDelayed android.os.Message long
+# android.os.Handler sendMessageAtFrontOfQueue android.os.Message
+# android.os.Handler sendMessageAtTime android.os.Message long
+android.os.Handler dispatchMessage android.os.Message
+android.app.ActivityThread$H handleMessage android.os.Message
+android.os.AsyncTask publishProgress [java.lang.Object
+android.os.AsyncTask execute [java.lang.Object
+java.lang.Thread <init> java.lang.Runnable
+java.lang.Thread start
+java.lang.Thread run
+# android.os.BinderProxy transact int android.os.Parcel android.os.Parcel int
+android.view.View$DeclaredOnClickListener resolveMethod android.content.Context java.lang.String

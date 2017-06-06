@@ -1,0 +1,6 @@
+android.app.Activity onCreate android.os.Bundle
+android.app.Activity onStart
+android.app.Activity onResume
+android.app.Activity onPause
+android.app.Activity onStop
+android.app.Activity onDestroy

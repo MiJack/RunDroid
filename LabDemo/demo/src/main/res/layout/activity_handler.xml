@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context="cn.mijack.multithreadandipcdemo.HandlerActivity">
+    <Button
+        android:id="@+id/btnSendMessage"
+        android:layout_width="fill_parent"
+        android:text="3秒后更改下下发内容"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

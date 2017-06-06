@@ -1,0 +1,12 @@
+com.com.mijack.labdemo.MainActivity onCreate android.os.Bundle
+com.com.mijack.labdemo.MainActivity clickBtn1 android.view.View
+com.com.mijack.labdemo.MainActivity clickBtn2 android.view.View
+com.com.mijack.labdemo.MainActivity clickBtn3 android.view.View
+com.com.mijack.labdemo.MainActivity clickBtn4 android.view.View
+com.com.mijack.labdemo.MainActivity clickBtn5 android.view.View
+com.com.mijack.labdemo.MainActivity clickBtn6 android.view.View
+com.com.mijack.labdemo.MainActivity a
+com.com.mijack.labdemo.MainActivity d
+com.com.mijack.labdemo.MainActivity b
+com.com.mijack.labdemo.MainActivity c
+com.com.mijack.labdemo.MainActivity a0

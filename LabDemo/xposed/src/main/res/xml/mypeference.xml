@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<EditTextPreference
+			android:defaultValue="com.com.mijack.labdemo"
+			android:selectAllOnFocus="true"
+			android:singleLine="true"
+			android:title="包名"
+			android:key="packagename" />
+</PreferenceScreen>
