@@ -102,9 +102,9 @@ public class SootPlugins {
         Options.v().set_force_overwrite(true);
         Options.v().set_output_format(Options.output_format_jimple);
         Options.v().set_process_dir(Collections.singletonList(Config.getInstance().getApkFile()));
-        Options.v().set_android_jars(ANDROID_JAR);
+        Options.v().set_android_jars(Config.getInstance().getAndroidJar());
         Options.v().set_src_prec(Options.src_prec_apk);
-        Options.v().set_soot_classpath(ANDROID_JAR);
+        Options.v().set_soot_classpath(Config.getInstance().getAndroidJar());
 
         Scene.v().loadNecessaryClasses();
     }

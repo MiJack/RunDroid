@@ -10,6 +10,8 @@ public class Config {
     private String manifestFile;
     private String logFile;
     private String apkFile;
+    private static final Config instance = new Config();
+    private String androidJar;
 
     public boolean readConfig(String[] args) {
 //java -jar xxx.jar -logFile  xxxx -manifestFile xxxxx -apkFile xxxx
@@ -27,13 +29,16 @@ public class Config {
                 case "-apkFile":
                     setApkFile(args[i]);
                     break;
+                case "-androidJar":
+                    setAndroidJar(args[i]);
+                    break;
             }
         }
-        return !(Utils.isEmpty(apkFile) || Utils.isEmpty(logFile) || Utils.isEmpty(manifestFile));
+        return !(Utils.isEmpty(apkFile) || Utils.isEmpty(logFile) || Utils.isEmpty(manifestFile)|| Utils.isEmpty(androidJar));
     }
 
     public static Config getInstance() {
-        return new Config();
+        return instance;
     }
 
     public void setManifestFile(String manifestFile) {
@@ -58,5 +63,13 @@ public class Config {
 
     public String getApkFile() {
         return apkFile;
+    }
+
+    public void setAndroidJar(String androidJar) {
+        this.androidJar = androidJar;
+    }
+
+    public String getAndroidJar() {
+        return androidJar;
     }
 }

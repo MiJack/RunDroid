@@ -48,7 +48,7 @@ public class SourceChanger {
         for (int i = 0; args != null && i < args.length; i++) {
             String arg = args[i];
             switch (arg) {
-                case "-i":
+                case "-java-input":
                     config.setInput(args[++i]);
                     break;
                 case "-java-output":

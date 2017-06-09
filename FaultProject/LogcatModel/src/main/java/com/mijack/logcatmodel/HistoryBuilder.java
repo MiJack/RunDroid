@@ -824,7 +824,7 @@ public class HistoryBuilder {
         this.manifestFile = manifestFile;
         this.apkFile = apkFile;
 
-//        SootPlugins.getInstance().analyzeApk(apkFile);
+        SootPlugins.getInstance().analyzeApk(apkFile);
         SAXReader reader = new SAXReader();
         try {
             Document document = reader.read(new File(manifestFile));
