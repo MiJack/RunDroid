@@ -91,7 +91,7 @@ public static void logMethodExit(int hookId, String methodSign, Object instance)
             sb.append(",").append(String.format(KEY_TO_VALUE, "throwable", XlogUtils.object2String(throwable)));
         }
         sb.append("}");
-        Log.d(TAG, sb.toString());
+        XLoger.d(TAG, sb.toString());
     }
 
     public static void logMethodExecuteInfo(String methodType, String methodSign, Object instance, Object... args) {
@@ -108,7 +108,7 @@ public static void logMethodExit(int hookId, String methodSign, Object instance)
         }
         sb.append(",").append(XlogUtils.paramsToString(args));
         sb.append("}");
-        Log.d(TAG, sb.toString());
+        XLoger.d(TAG, sb.toString());
     }
 
     public static void logMethodEnterInfo(int hookId, String methodType, String methodSign, Object instance, Object... args) {
@@ -128,7 +128,7 @@ public static void logMethodExit(int hookId, String methodSign, Object instance)
         }
         sb.append(",").append(XlogUtils.paramsToString(args));
         sb.append("}");
-        Log.d(TAG, sb.toString());
+        XLoger.d(TAG, sb.toString());
     }
 
     public static final String KEY_TO_VALUE = "\"%s\":\"%s\"";
@@ -147,7 +147,7 @@ public static void logMethodExit(int hookId, String methodSign, Object instance)
         sb.append(",").append(String.format(KEY_TO_VALUE, "methodSign", methodSign));
         sb.append(",").append(String.format(KEY_TO_VALUE2, "result", XlogUtils.object2String(result)));
         sb.append("}");
-        Log.d(TAG, sb.toString());
+        XLoger.d(TAG, sb.toString());
     }
 
     public static void logMethodExitWithResult(int hookId, String methodSign, Object instance, Object result) {
@@ -164,6 +164,6 @@ public static void logMethodExit(int hookId, String methodSign, Object instance)
         sb.append(",").append(String.format(KEY_TO_VALUE2, "instance", XlogUtils.object2String(instance)));
         sb.append(",").append(String.format(KEY_TO_VALUE2, "result", XlogUtils.object2String(result)));
         sb.append("}");
-        Log.d(TAG, sb.toString());
+        XLoger.d(TAG, sb.toString());
     }
 }
