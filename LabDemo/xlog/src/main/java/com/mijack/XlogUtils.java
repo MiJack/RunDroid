@@ -251,4 +251,8 @@ public class XlogUtils {
         }
         return type.getName();
     }
+
+    public static long currentTime() {
+        return System.nanoTime();
+    }
 }

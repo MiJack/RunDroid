@@ -104,68 +104,35 @@ public class MainActivity extends Activity {
         doPerformanceTest("log4a" ,times);
         Log4a.release();
 
-        Log4a.setLogger(logger);
-        logger.addAppender(createAndroidLogAppender());
-        doPerformanceTest("android log" ,times);
-        Log4a.release();
-
-        Log4a.setLogger(logger);
-        List<String> buffer = new ArrayList<>(times);
-        logger.addAppender(createMemAppender(buffer));
-        doPerformanceTest("array list log" ,times);
-        buffer.clear();
-        Log4a.release();
-
-        Log4a.setLogger(logger);
-        logger.addAppender(createNoBufferFileAppender());
-        doPerformanceTest("file log(no buffer)" ,times);
-        Log4a.release();
-
-        Log4a.setLogger(logger);
-        logger.addAppender(createWithBufferFileAppender());
-        doPerformanceTest("file log(with buffer)" ,times);
-        Log4a.release();
-
-        Log4a.setLogger(logger);
-        logger.addAppender(createNoBufferInThreadFileAppender());
-        doPerformanceTest("file log(no buffer in thread)" ,times);
-        tvTest.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Log4a.release();
-            }
-        }, 1000);
-
-        LogInit.init(this);
         tvTest.append("## end");
     }
 
-    private Appender createNoBufferFileAppender() {
-        File logFile = new File(FileUtils.getLogDir(this), "logNoBufferFileTest.txt");
-        logFile.delete();
-        return new NoBufferFileAppender(logFile);
-    }
-
-    private Appender createWithBufferFileAppender() {
-        File logFile = new File(FileUtils.getLogDir(this), "logBufferFileTest.txt");
-        logFile.delete();
-        return new BufferFileAppender(logFile, BUFFER_SIZE);
-    }
-
-    private Appender createNoBufferInThreadFileAppender() {
-        File logFile = new File(FileUtils.getLogDir(this), "logNoBufferInThreadFileTest.txt");
-        logFile.delete();
-        return new NoBufferInThreadFileAppender(logFile);
-    }
-
-    private Appender createMemAppender(final List<String> buffer) {
-        return new AbsAppender() {
-            @Override
-            protected void doAppend(int logLevel, String tag, String msg) {
-                buffer.add(msg);
-            }
-        };
-    }
+//    private Appender createNoBufferFileAppender() {
+//        File logFile = new File(FileUtils.getLogDir(this), "logNoBufferFileTest.txt");
+//        logFile.delete();
+//        return new NoBufferFileAppender(logFile);
+//    }
+//
+//    private Appender createWithBufferFileAppender() {
+//        File logFile = new File(FileUtils.getLogDir(this), "logBufferFileTest.txt");
+//        logFile.delete();
+//        return new BufferFileAppender(logFile, BUFFER_SIZE);
+//    }
+//
+//    private Appender createNoBufferInThreadFileAppender() {
+//        File logFile = new File(FileUtils.getLogDir(this), "logNoBufferInThreadFileTest.txt");
+//        logFile.delete();
+//        return new NoBufferInThreadFileAppender(logFile);
+//    }
+//
+//    private Appender createMemAppender(final List<String> buffer) {
+//        return new AbsAppender() {
+//            @Override
+//            protected void doAppend(int logLevel, String tag, String msg) {
+//                buffer.add(msg);
+//            }
+//        };
+//    }
 
     private Appender createLog4aFileAppender() {
         File log = FileUtils.getLogDir(this);
@@ -184,10 +151,6 @@ public class MainActivity extends Activity {
                 })
                 .setBufferFilePath(cacheFile.getAbsolutePath());
         return fileBuild.create();
-    }
-
-    private Appender createAndroidLogAppender() {
-        return new AndroidAppender.Builder().create();
     }
 
     private void doPerformanceTest(String testName, int times) {

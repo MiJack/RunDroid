@@ -5,8 +5,8 @@ import android.util.Log;
 
 
 /**
-* Created by Mr.Yuan on 2017/3/31.
-*/
+ * Created by Mr.Yuan on 2017/3/31.
+ */
 public class Xlog {
     public static final String TAG = "Xlog";
     public static final String LOG_TYPE_EXECUTE = "execute";
@@ -41,38 +41,56 @@ public class Xlog {
     public static void logStaticMethodEnter(int hookId, String methodSign, Object... args) {
         logMethodEnterInfo(hookId, STATIC_METHOD_TYPE, methodSign, null, args);
     }
-//Xlog.logStaticMethodExitWithThrowable(System.identityHashCode(param),method2String(param.method), param.getThrowable());
-public static void logStaticMethodExitWithThrowable( String methodSign, Throwable throwable) {logStaticMethodExitWithThrowable(-1,methodSign, throwable);}
-public static void logStaticMethodExitWithThrowable(int hookId, String methodSign, Throwable throwable) {
-        logMethodExitInfo(hookId,STATIC_METHOD_TYPE,methodSign,-1,null,throwable);
-}
-//Xlog.logStaticMethodExit(System.identityHashCode(param),method2String(param.method));
-public static void logStaticMethodExit(String methodSign) {logStaticMethodExit(-1,methodSign);}
-public static void logStaticMethodExit(int hookId, String methodSign) {
-    logMethodExitInfo(hookId,STATIC_METHOD_TYPE,methodSign,-1,null,null);
-}
-public static void logStaticMethodExit(String methodSign, int index) {
-    logMethodExitInfo(-1,STATIC_METHOD_TYPE,methodSign,index,null,null);
-}
-//Xlog.logMethodExitWithThrowable(System.identityHashCode(param),method2String(param.method), param.thisObject, param.getThrowable());
-public static void logMethodExitWithThrowable( String methodSign, Object instance, Throwable throwable) {logMethodExitWithThrowable(-1,methodSign, instance, throwable);}
-public static void logMethodExitWithThrowable(int hookId, String methodSign, Object instance, Throwable throwable) {
-    logMethodExitInfo(hookId,INSTANCE_METHOD_TYPE,methodSign,-1,instance,throwable);
 
-}
-//Xlog.logMethodExit(System.identityHashCode(param),method2String(param.method), param.thisObject);
-public static void logMethodExit(String methodSign, Object instance) {logMethodExit(methodSign, instance,-1);}
-public static void logMethodExit(String methodSign, Object instance, int index) {
-    logMethodExitInfo(-1,INSTANCE_METHOD_TYPE,methodSign,index,instance,null);
+    //Xlog.logStaticMethodExitWithThrowable(System.identityHashCode(param),method2String(param.method), param.getThrowable());
+    public static void logStaticMethodExitWithThrowable(String methodSign, Throwable throwable) {
+        logStaticMethodExitWithThrowable(-1, methodSign, throwable);
+    }
 
-}
-public static void logMethodExit(int hookId, String methodSign, Object instance) {
-    logMethodExitInfo(hookId,INSTANCE_METHOD_TYPE,methodSign,-1,instance,null);
-}
+    public static void logStaticMethodExitWithThrowable(int hookId, String methodSign, Throwable throwable) {
+        logMethodExitInfo(hookId, STATIC_METHOD_TYPE, methodSign, -1, null, throwable);
+    }
 
-    public static void logMethodExitInfo(int hookId,String methodType, String methodSign, int index, Object instance, Throwable throwable) {
+    //Xlog.logStaticMethodExit(System.identityHashCode(param),method2String(param.method));
+    public static void logStaticMethodExit(String methodSign) {
+        logStaticMethodExit(-1, methodSign);
+    }
+
+    public static void logStaticMethodExit(int hookId, String methodSign) {
+        logMethodExitInfo(hookId, STATIC_METHOD_TYPE, methodSign, -1, null, null);
+    }
+
+    public static void logStaticMethodExit(String methodSign, int index) {
+        logMethodExitInfo(-1, STATIC_METHOD_TYPE, methodSign, index, null, null);
+    }
+
+    //Xlog.logMethodExitWithThrowable(System.identityHashCode(param),method2String(param.method), param.thisObject, param.getThrowable());
+    public static void logMethodExitWithThrowable(String methodSign, Object instance, Throwable throwable) {
+        logMethodExitWithThrowable(-1, methodSign, instance, throwable);
+    }
+
+    public static void logMethodExitWithThrowable(int hookId, String methodSign, Object instance, Throwable throwable) {
+        logMethodExitInfo(hookId, INSTANCE_METHOD_TYPE, methodSign, -1, instance, throwable);
+
+    }
+
+    //Xlog.logMethodExit(System.identityHashCode(param),method2String(param.method), param.thisObject);
+    public static void logMethodExit(String methodSign, Object instance) {
+        logMethodExit(methodSign, instance, -1);
+    }
+
+    public static void logMethodExit(String methodSign, Object instance, int index) {
+        logMethodExitInfo(-1, INSTANCE_METHOD_TYPE, methodSign, index, instance, null);
+
+    }
+
+    public static void logMethodExit(int hookId, String methodSign, Object instance) {
+        logMethodExitInfo(hookId, INSTANCE_METHOD_TYPE, methodSign, -1, instance, null);
+    }
+
+    public static void logMethodExitInfo(int hookId, String methodType, String methodSign, int index, Object instance, Throwable throwable) {
         StringBuilder sb = new StringBuilder("{").append(String.format(KEY_TO_VALUE, "logType", LOG_TYPE_EXIT));
-        sb.append(",").append(String.format(KEY_TO_VALUE, "time", System.currentTimeMillis()));
+        sb.append(",").append(String.format(KEY_TO_VALUE, "time", XlogUtils.currentTime()));
         sb.append(",").append(String.format(KEY_TO_VALUE, "processName", XlogUtils.getProcessName()));
         sb.append(",").append(String.format(KEY_TO_VALUE, "threadName", XlogUtils.getCurrentThreadInfo()));
         sb.append(",").append(String.format(KEY_TO_VALUE, "pid", XlogUtils.getProcessId()));
@@ -87,7 +105,7 @@ public static void logMethodExit(int hookId, String methodSign, Object instance)
         if (INSTANCE_METHOD_TYPE.equals(methodType)) {
             sb.append(",").append(String.format(KEY_TO_VALUE2, "instance", XlogUtils.object2String(instance)));
         }
-        if (throwable !=null){
+        if (throwable != null) {
             sb.append(",").append(String.format(KEY_TO_VALUE, "throwable", XlogUtils.object2String(throwable)));
         }
         sb.append("}");
@@ -96,7 +114,7 @@ public static void logMethodExit(int hookId, String methodSign, Object instance)
 
     public static void logMethodExecuteInfo(String methodType, String methodSign, Object instance, Object... args) {
         StringBuilder sb = new StringBuilder("{").append(String.format(KEY_TO_VALUE, "logType", LOG_TYPE_EXECUTE));
-        sb.append(",").append(String.format(KEY_TO_VALUE, "time", System.currentTimeMillis()));
+        sb.append(",").append(String.format(KEY_TO_VALUE, "time", XlogUtils.currentTime()));
         sb.append(",").append(String.format(KEY_TO_VALUE, "processName", XlogUtils.getProcessName()));
         sb.append(",").append(String.format(KEY_TO_VALUE, "threadName", XlogUtils.getCurrentThreadInfo()));
         sb.append(",").append(String.format(KEY_TO_VALUE, "pid", XlogUtils.getProcessId()));
@@ -113,7 +131,7 @@ public static void logMethodExit(int hookId, String methodSign, Object instance)
 
     public static void logMethodEnterInfo(int hookId, String methodType, String methodSign, Object instance, Object... args) {
         StringBuilder sb = new StringBuilder("{").append(String.format(KEY_TO_VALUE, "logType", LOG_TYPE_ENTER));
-        sb.append(",").append(String.format(KEY_TO_VALUE, "time", System.currentTimeMillis()));
+        sb.append(",").append(String.format(KEY_TO_VALUE, "time", XlogUtils.currentTime()));
         sb.append(",").append(String.format(KEY_TO_VALUE, "processName", XlogUtils.getProcessName()));
         sb.append(",").append(String.format(KEY_TO_VALUE, "threadName", XlogUtils.getCurrentThreadInfo()));
         sb.append(",").append(String.format(KEY_TO_VALUE, "pid", XlogUtils.getProcessId()));
@@ -136,7 +154,7 @@ public static void logMethodExit(int hookId, String methodSign, Object instance)
 
     public static void logStaticMethodExitWithResult(int hookId, String methodSign, Object result) {
         StringBuilder sb = new StringBuilder("{").append(String.format(KEY_TO_VALUE, "logType", LOG_TYPE_EXIT));
-        sb.append(",").append(String.format(KEY_TO_VALUE, "time", System.currentTimeMillis()));
+        sb.append(",").append(String.format(KEY_TO_VALUE, "time", XlogUtils.currentTime()));
         sb.append(",").append(String.format(KEY_TO_VALUE, "processName", XlogUtils.getProcessName()));
         sb.append(",").append(String.format(KEY_TO_VALUE, "threadName", XlogUtils.getCurrentThreadInfo()));
         sb.append(",").append(String.format(KEY_TO_VALUE, "pid", XlogUtils.getProcessId()));
@@ -152,7 +170,7 @@ public static void logMethodExit(int hookId, String methodSign, Object instance)
 
     public static void logMethodExitWithResult(int hookId, String methodSign, Object instance, Object result) {
         StringBuilder sb = new StringBuilder("{").append(String.format(KEY_TO_VALUE, "logType", LOG_TYPE_EXIT));
-        sb.append(",").append(String.format(KEY_TO_VALUE, "time", System.currentTimeMillis()));
+        sb.append(",").append(String.format(KEY_TO_VALUE, "time", XlogUtils.currentTime()));
         sb.append(",").append(String.format(KEY_TO_VALUE, "processName", XlogUtils.getProcessName()));
         sb.append(",").append(String.format(KEY_TO_VALUE, "threadName", XlogUtils.getCurrentThreadInfo()));
         sb.append(",").append(String.format(KEY_TO_VALUE, "pid", XlogUtils.getProcessId()));
